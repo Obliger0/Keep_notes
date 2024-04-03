@@ -1,13 +1,13 @@
 import express from "express";
 import dbConnection from "./db/conn.js";
-
+import dotenv from 'dotenv';
 const app = express();
 const PORT = process.env.PORT || 8008;
 
+dotenv.config();
 app.use(express.json());
 
-const mongoUri = "";
-dbConnection(mongoUri);
+dbConnection(process.env.MONGO_URI);
 
 app.get('/', (req, res) => {
   res.status(200).json({
